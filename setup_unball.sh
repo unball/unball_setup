@@ -2,6 +2,7 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 NO_COLOR='\033[0m'
 
+ORIGINAL_DIRECTORY=$PWD
 cd ~
 if [ -d "unball" ]
 then
@@ -35,6 +36,7 @@ else
     ln -s ~/unball/communication ~/catkin_ws_unball/src/communication
     ln -s ~/unball/simulator ~/catkin_ws_unball/src/simulator
     ln -s ~/unball/control ~/catkin_ws_unball/src/control
+    cp ${ORIGINAL_DIRECTORY}/run_strategy_and_simulator.sh ~/catkin_ws_unball/
 
     printf "\n${BLUE}Setup complete! This folder may now be deleted if you wish.${NO_COLOR}\n"
 fi
