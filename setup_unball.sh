@@ -14,6 +14,7 @@ else
     git clone https://github.com/unball/vision.git
     git clone https://github.com/unball/communication.git
     git clone https://github.com/unball/strategy.git
+    git clone https://github.com/unball/control.git
 
     printf "\n${BLUE}Downloading the unball simulator${NO_COLOR}\n\n"
     mkdir ~/unball/simulator
@@ -33,6 +34,7 @@ else
     ln -s ~/unball/strategy ~/catkin_ws_unball/src/strategy
     ln -s ~/unball/communication ~/catkin_ws_unball/src/communication
     ln -s ~/unball/simulator ~/catkin_ws_unball/src/simulator
+    ln -s ~/unball/control ~/catkin_ws_unball/src/control
 
     printf "\n${BLUE}Setup complete! This folder may now be deleted if you wish.${NO_COLOR}\n"
 fi
