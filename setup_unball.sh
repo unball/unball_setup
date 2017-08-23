@@ -1,5 +1,6 @@
 RED='\033[0;31m'
 BLUE='\033[0;34m'
+GREEN='\033[0;32m'
 NO_COLOR='\033[0m'
 
 ORIGINAL_DIRECTORY=$PWD
@@ -36,8 +37,9 @@ else
     ln -s ~/unball/communication ~/catkin_ws_unball/src/communication
     ln -s ~/unball/simulator ~/catkin_ws_unball/src/simulator
     ln -s ~/unball/control ~/catkin_ws_unball/src/control
-    # cp ${ORIGINAL_DIRECTORY}/run_strategy_and_simulator.sh ~/catkin_ws_unball/
-    catkin_make
+    cp ${ORIGINAL_DIRECTORY}/run_strategy_and_simulator.sh ~/catkin_ws_unball/
+
+    catkin_make;
 
     printf "\n${BLUE}Setup complete! This folder may now be deleted if you wish.${NO_COLOR}\n"
 fi
