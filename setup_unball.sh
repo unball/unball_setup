@@ -38,6 +38,7 @@ else
     ln -s ~/unball/simulator ~/catkin_ws_unball/src/simulator
     ln -s ~/unball/control ~/catkin_ws_unball/src/control
     cp ${ORIGINAL_DIRECTORY}/run_strategy_and_simulator.sh ~/catkin_ws_unball/
+    cp ${ORIGINAL_DIRECTORY}/update_all_repos.sh ~/catkin_ws_unball/
 
     catkin_make;
 
