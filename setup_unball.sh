@@ -9,6 +9,7 @@ repos=(
     communication
     control
     measurement-system
+    strategy
 )
 
 check_repos(){
@@ -19,7 +20,7 @@ check_repos(){
     do
         if [[ ! -d "$i" ]] ; then
             printf "${GREEN} Cloning repo $i${NO_COLOR}\n"
-            $clonestr$i
+            $clonestr$i.git
         else
             printf "${BLUE} $i already cloned ${NO_COLOR}\n"
         fi
@@ -53,8 +54,18 @@ configure_catkin(){
     cp ${ORIGINAL_DIRECTORY}/run_strategy_and_simulator.sh ~/catkin_ws_unball/
     cp ${ORIGINAL_DIRECTORY}/update_all_repos.sh ~/catkin_ws_unball/
     chmod 777 ${ORIGINAL_DIRECTORY}/run_strategy_and_simulator.sh
-    sudo cp ${ORIGINAL_DIRECTORY}/run_strategy_and_simulator.sh /usr/bin
-    catkin_make;
+    if [[ -e /usr/bin/run_strategy_and_simulator ]]; then
+        sudo rm /usr/bin/run_strategy_and_simulator
+    fi
+
+    sudo ln -s ~/catkin_ws_unball/run_strategy_and_simulator.sh /usr/bin/run_strategy_and_simulator
+
+    printf "${GREEN}Copying desktop entry\n${NO_COLOR}"
+    sudo cp ${ORIGINAL_DIRECTORY}/unball.png /usr/local/etc
+    sudo cp ${ORIGINAL_DIRECTORY}/unball.desktop ~/.local/share/applications/
+    sudo cp ${ORIGINAL_DIRECTORY}/unball.desktop ~/usr/share/applications/
+    
+    catkin_make
 
     printf "\n${BLUE}Setup complete! This folder may now be deleted if you wish.${NO_COLOR}\n"
 }
