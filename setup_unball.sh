@@ -35,6 +35,7 @@ download_simulator(){
     wget -O "unball_simulator.tar.gz" "https://drive.google.com/uc?export=download&id=0BwlvQGynHcxZTTdPUnF3dGR0MlE"
     # Extract downloaded version, overwriting files
     tar -xzf "unball_simulator.tar.gz" --overwrite
+    ln -s ~/unball/simulator ~/catkin_ws_unball/src/simulator
 }
 
 configure_catkin(){
@@ -44,7 +45,7 @@ configure_catkin(){
     mkdir -p ~/catkin_ws_unball
     cd ~/catkin_ws_unball
     mkdir -p src
-    catkin_make -j1
+    catkin_make
     for i in "${argAry[@]}"
     do
         if [[ ! -e "src/"$i ]]; then
