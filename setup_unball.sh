@@ -35,7 +35,6 @@ download_simulator(){
     wget -O "unball_simulator.tar.gz" "https://drive.google.com/uc?export=download&id=0BwlvQGynHcxZTTdPUnF3dGR0MlE"
     # Extract downloaded version, overwriting files
     tar -xzf "unball_simulator.tar.gz" --overwrite
-    ln -s ~/unball/simulator ~/catkin_ws_unball/src/simulator
 }
 
 configure_catkin(){
@@ -52,6 +51,9 @@ configure_catkin(){
             ln -s ~/unball/$i ~/catkin_ws_unball/src/$i
         fi
     done
+    if [[ ! -e "src/simulator" ]]; then
+        ln -s ~/unball/simulator ~/catkin_ws_unball/src/simulator
+    fi
     cp ${ORIGINAL_DIRECTORY}/run_strategy_and_simulator.sh ~/catkin_ws_unball/
     cp ${ORIGINAL_DIRECTORY}/update_all_repos.sh ~/catkin_ws_unball/
     chmod 777 ${ORIGINAL_DIRECTORY}/run_strategy_and_simulator.sh
