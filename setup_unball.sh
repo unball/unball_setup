@@ -8,7 +8,7 @@ repos=(
     vision
     communication
     control
-    measurement-system
+    measurement_system
     strategy
 )
 
