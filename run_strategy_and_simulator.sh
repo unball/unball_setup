@@ -13,6 +13,5 @@ gnome-terminal \
     --tab -e "${rosbridge//rossubs/$rossource}" \
     --tab -e "${simulator}" \
     --tab -e "${go_to_ball//rossubs/$rossource}"\
-    --tab -e "${measurement//rossubs/$rossource}"\
     --tab -e "${relative_position_converter//rossubs/$rossource}"\
     --tab -e "${position_control//rossubs/$rossource}" \
