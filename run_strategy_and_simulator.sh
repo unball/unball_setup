@@ -5,6 +5,7 @@ rossource='source /opt/ros/kinetic/setup.bash; source ~/catkin_ws_unball/devel/s
 rosbridge='bash -c "rossubs; roslaunch rosbridge_server rosbridge_websocket.launch; bash"'
 simulator='bash -c "./src/simulator/unball_simulator.x86_64; bash"'
 go_to_ball='bash -c "rossubs; rosrun strategy go_to_ball.py; bash"'
+measurement='bash -c "rossubs; rosrun measurement_system kalman.py; bash"'
 relative_position_converter='bash -c "rossubs; rosrun strategy relative_position_converter.py; bash"' 
 position_control='bash -c "rossubs; python2 ./src/control/position_control.py; bash"'
 
@@ -12,5 +13,6 @@ gnome-terminal \
     --tab -e "${rosbridge//rossubs/$rossource}" \
     --tab -e "${simulator}" \
     --tab -e "${go_to_ball//rossubs/$rossource}"\
+    --tab -e "${measurement//rossubs/$rossource}"\
     --tab -e "${relative_position_converter//rossubs/$rossource}"\
     --tab -e "${position_control//rossubs/$rossource}" \
