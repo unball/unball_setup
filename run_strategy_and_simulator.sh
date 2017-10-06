@@ -7,11 +7,12 @@ simulator='bash -c "./src/simulator/unball_simulator.x86_64; bash"'
 start_strategy='bash -c "rossubs; rosrun strategy start_strategy.py; bash"'
 measurement='bash -c "rossubs; rosrun measurement_system kalman.py; bash"'
 relative_position_converter='bash -c "rossubs; rosrun strategy relative_position_converter.py; bash"' 
-position_control='bash -c "rossubs; python2 ./src/control/position_control.py; bash"'
+control_system='bash -c "rossubs; rosrun control control_system.py; bash"'
+
 
 gnome-terminal \
     --tab -e "${rosbridge//rossubs/$rossource}" \
     --tab -e "${simulator}" \
     --tab -e "${start_strategy//rossubs/$rossource}"\
     --tab -e "${relative_position_converter//rossubs/$rossource}"\
-    --tab -e "${position_control//rossubs/$rossource}" \
+    --tab -e "${control_system//rossubs/$rossource}" \
