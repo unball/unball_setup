@@ -66,7 +66,7 @@ configure_catkin(){
     printf "${GREEN}Copying desktop entry\n${NO_COLOR}"
     sudo cp ${ORIGINAL_DIRECTORY}/unball.png /usr/local/etc
     sudo cp ${ORIGINAL_DIRECTORY}/unball.desktop ~/.local/share/applications/
-    sudo cp ${ORIGINAL_DIRECTORY}/unball.desktop ~/usr/share/applications/
+    sudo cp ${ORIGINAL_DIRECTORY}/unball.desktop /usr/share/applications/
     
     catkin_make
 
