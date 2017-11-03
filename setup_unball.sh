@@ -54,8 +54,11 @@ configure_catkin(){
     if [[ ! -e "src/simulator" ]]; then
         ln -s ~/unball/simulator ~/catkin_ws_unball/src/simulator
     fi
+    cp ${ORIGINAL_DIRECTORY}/run_system.sh ~/catkin_ws_unball/
     cp ${ORIGINAL_DIRECTORY}/run_strategy_and_simulator.sh ~/catkin_ws_unball/
     cp ${ORIGINAL_DIRECTORY}/update_all_repos.sh ~/catkin_ws_unball/
+    cp ${ORIGINAL_DIRECTORY}/status_all_repos.sh ~/catkin_ws_unball/
+    cp ${ORIGINAL_DIRECTORY}/hard_reset_all_repos.sh ~/catkin_ws_unball/
     chmod 777 ${ORIGINAL_DIRECTORY}/run_strategy_and_simulator.sh
     if [[ -e /usr/bin/run_strategy_and_simulator ]]; then
         sudo rm /usr/bin/run_strategy_and_simulator
@@ -67,7 +70,7 @@ configure_catkin(){
     sudo cp ${ORIGINAL_DIRECTORY}/unball.png /usr/local/etc
     sudo cp ${ORIGINAL_DIRECTORY}/unball.desktop ~/.local/share/applications/
     sudo cp ${ORIGINAL_DIRECTORY}/unball.desktop /usr/share/applications/
-    
+
     catkin_make
 
     printf "\n${BLUE}Setup complete! This folder may now be deleted if you wish.${NO_COLOR}\n"
