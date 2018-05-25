@@ -21,3 +21,7 @@ git status
 cd ../vision
 printf "\nStatus of repo at ${PWD}\n"
 git status
+
+cd ../system
+printf "\nStatus of repo at ${PWD}\n"
+git status

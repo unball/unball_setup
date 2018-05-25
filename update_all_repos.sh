@@ -22,3 +22,6 @@ cd ../vision
 printf "\nUpdating repo at ${PWD}\n"
 git pull
 
+cd ../system
+printf "\nUpdating repo at ${PWD}\n"
+git pull

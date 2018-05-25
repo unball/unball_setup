@@ -10,6 +10,7 @@ repos=(
     control
     measurement_system
     strategy
+    system
 )
 
 check_repos(){
