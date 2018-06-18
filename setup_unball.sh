@@ -60,6 +60,9 @@ configure_catkin(){
     cp ${ORIGINAL_DIRECTORY}/update_all_repos.sh ~/catkin_ws_unball/
     cp ${ORIGINAL_DIRECTORY}/status_all_repos.sh ~/catkin_ws_unball/
     cp ${ORIGINAL_DIRECTORY}/hard_reset_all_repos.sh ~/catkin_ws_unball/
+    cp ${ORIGINAL_DIRECTORY}/plot_from_simulator.sh ~/catkin_ws_unball/
+    cp ${ORIGINAL_DIRECTORY}/plot.py ~/catkin_ws_unball/
+
     chmod 777 ${ORIGINAL_DIRECTORY}/run_strategy_and_simulator.sh
     if [[ -e /usr/bin/run_strategy_and_simulator ]]; then
         sudo rm /usr/bin/run_strategy_and_simulator
