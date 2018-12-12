@@ -11,6 +11,9 @@ repos=(
     measurement_system
     strategy
     system
+    strategy2018
+    python_simulator
+    new_vision
 )
 
 check_repos(){
