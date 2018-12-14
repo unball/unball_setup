@@ -60,6 +60,7 @@ configure_catkin(){
     fi
     cp ${ORIGINAL_DIRECTORY}/run_system.sh ~/catkin_ws_unball/
     cp ${ORIGINAL_DIRECTORY}/run_strategy_and_simulator.sh ~/catkin_ws_unball/
+    cp ${ORIGINAL_DIRECTORY}/run_strategy_and_pythonsimulator.sh ~/catkin_ws_unball/
     cp ${ORIGINAL_DIRECTORY}/update_all_repos.sh ~/catkin_ws_unball/
     cp ${ORIGINAL_DIRECTORY}/status_all_repos.sh ~/catkin_ws_unball/
     cp ${ORIGINAL_DIRECTORY}/hard_reset_all_repos.sh ~/catkin_ws_unball/
@@ -72,6 +73,13 @@ configure_catkin(){
     fi
 
     sudo ln -s ~/catkin_ws_unball/run_strategy_and_simulator.sh /usr/bin/run_strategy_and_simulator
+
+    chmod 777 ${ORIGINAL_DIRECTORY}/run_strategy_and_pythonsimulator.sh
+    if [[ -e /usr/bin/run_strategy_and_pythonsimulator ]]; then
+        sudo rm /usr/bin/run_strategy_and_pythonsimulator
+    fi
+
+    sudo ln -s ~/catkin_ws_unball/run_strategy_and_pythonsimulator.sh /usr/bin/run_strategy_and_pythonsimulator
 
     printf "${GREEN}Copying desktop entry\n${NO_COLOR}"
     sudo cp ${ORIGINAL_DIRECTORY}/unball.png /usr/local/etc

@@ -24,4 +24,9 @@ cd ../vision
 printf "\Resetting repo at ${PWD}\n"
 git reset --hard
 
+cd ../python_simulator
+printf "\Resetting repo at ${PWD}\n"
+git reset --hard
+
+
 #### USE WITH EXTREME CAUTION ###
