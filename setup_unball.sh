@@ -5,7 +5,6 @@ NO_COLOR='\033[0m'
 
 repos=(
     ieee-very-small
-    vision
     communication
     control
     measurement_system
