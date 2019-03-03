@@ -5,14 +5,15 @@ NO_COLOR='\033[0m'
 
 repos=(
     ieee-very-small
+    Firmware
     communication
     control
     measurement_system
     strategy
     system
-    strategy2018
+    main_system
     python_simulator
-    new_vision
+    python_vision
 )
 
 check_repos(){
@@ -111,5 +112,3 @@ else
 fi
 
 configure_catkin repos[@]
-
-
