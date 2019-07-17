@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROS_FOLDER=/opt/ros/kinetic/
+ROS_FOLDER=/opt/ros/melodic/
 
 configld(){
     sudo echo "$ROS_FOLDER"lib > /etc/ld.so.conf.d/ros.conf
@@ -59,23 +59,24 @@ install_dependency() {
 }
 
 install_ros(){
-  echo "Starting ROS-kinetic installation"
+  echo "Starting ROS-melodic installation"
   sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-  sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+  sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
   sudo apt-get update
-  sudo apt-get -y install ros-kinetic-desktop-full
+  sudo apt-get -y install ros-melodic-desktop-full
   sudo rosdep init
   rosdep update
   echo "# Sourcing ROS environment variables" >> /home/$user_/.bashrc
-  echo "source /opt/ros/kinetic/setup.bash" >> /home/$user_/.bashrc
+  echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+  source ~/.bashrc
   
   echo "Finished"
 }
 
 configure_catkin(){
   echo "$user_"
-  source /opt/ros/kinetic/setup.bash
+  source /opt/ros/melodic/setup.bash
   mkdir -p /home/$user_/catkin_ws_unball/src; cd /home/$user_/catkin_ws_unball/src
   catkin_init_workspace
   source ~/catkin_ws_unball/devel/setup.bash
@@ -114,7 +115,7 @@ python_dev=(
     "python-qt4"
     "python-qt4-gl"
 )
-rosversion="ros-kinetic"
+rosversion="ros-melodic"
 
 ros_tools=(
     $rosversion"-joy"
