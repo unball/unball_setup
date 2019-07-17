@@ -106,14 +106,12 @@ video_iopack=(
 )
 
 python_dev=(
-    "python-pip"
     "python3-pip"
-    "python2.7-dev"
-    "python-numpy"
-    "python-dev"
-    "python-opencv"
-    "python-qt4"
-    "python-qt4-gl"
+    "python3-dev"
+    "python3-numpy"
+    "python3-opencv"
+    "python3-qt4"
+    "python3-qt4-gl"
 )
 rosversion="ros-melodic"
 
@@ -130,7 +128,7 @@ source /home/$user_/.bashrc
 install_dependency "Developer tools and packages" devtools[@]
 install_dependency "GTK development library" gtk[@]
 install_dependency "Video I/O packages" video_iopack[@]
-install_dependency "Python 2.7 dev tools" python_dev[@]
+install_dependency "Python3 dev tools" python_dev[@]
 
 if [[ -x "$(command -v roscore)" ]];then
   echo $(echo_pass 'ros')
