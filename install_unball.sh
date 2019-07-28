@@ -59,17 +59,16 @@ install_dependency() {
 }
 
 install_ros(){
+  sudo apt-get update
   echo "Starting ROS-melodic installation"
   sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
   sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
-  sudo apt-get update
   sudo apt-get -y install ros-melodic-desktop-full
   sudo rosdep init
   rosdep update
   echo "# Sourcing ROS environment variables" >> /home/$user_/.bashrc
   echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
-  source ~/.bashrc
   
   echo "Finished"
 }
@@ -137,6 +136,6 @@ else
 fi
 
 # sudo easy_install numpy scipy Sphinx numpydoc nose pykalman
-
+source ~/.bashrc
 install_dependency "ROS Dependencies" ros_tools[@]
 configld
