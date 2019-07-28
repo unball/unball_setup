@@ -52,7 +52,7 @@ install_dependency() {
       printf "\e[0m\n"
       printf "\e[1m Installing"
       printf "\e[0m\n"
-      sudo apt-get -y --force-yes install "$i"
+      sudo apt-get -y install "$i"
       echo "Done installing $i!"
     fi
   done
