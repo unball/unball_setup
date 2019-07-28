@@ -91,7 +91,7 @@ devtools=(
   "build-essential"
   "cmake"
   "pkg-config"
-  "git-core"
+  "git"
 )
 
 gtk=(
