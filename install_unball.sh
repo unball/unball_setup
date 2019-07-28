@@ -110,8 +110,7 @@ python_dev=(
     "python3-dev"
     "python3-numpy"
     "python3-opencv"
-    "python3-qt4"
-    "python3-qt4-gl"
+    "python3-qt*"
 )
 rosversion="ros-melodic"
 
