@@ -136,7 +136,7 @@ else
   configure_catkin
 fi
 
-sudo easy_install numpy scipy Sphinx numpydoc nose pykalman
+# sudo easy_install numpy scipy Sphinx numpydoc nose pykalman
 
 install_dependency "ROS Dependencies" ros_tools[@]
 configld
