@@ -79,8 +79,8 @@ configure_catkin(){
   source /opt/ros/melodic/setup.bash
   mkdir -p /home/$user_/catkin_ws_unball/src; cd /home/$user_/catkin_ws_unball/src
   catkin_init_workspace
-  source ~/catkin_ws_unball/devel/setup.bash
   cd /home/$user_/catkin_ws_unball/; catkin_make;
+  source ~/catkin_ws_unball/devel/setup.bash
   echo "# Sourcing catkin environment variables" >> /home/$user_/.bashrc
   echo "source ~/catkin_ws_unball/devel/setup.bash" >> /home/$user_/.bashrc
   source /home/$user_/.bashrc
