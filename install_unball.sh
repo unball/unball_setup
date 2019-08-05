@@ -58,6 +58,18 @@ install_dependency() {
   done
 }
 
+install_python_pckts() {
+  declare -a argAry=("${!2}")
+
+  for i in "${argAry[@]}"
+  do
+      printf "\e[1m Installing"
+      printf "\e[0m\n"
+      pip3 install "$i"
+      echo "Done installing $i!"
+  done
+}
+
 install_ros(){
   sudo apt-get update
   echo "Starting ROS-melodic installation"
@@ -114,6 +126,15 @@ python_dev=(
     "python3-opencv"
     "python3-qt*"
 )
+
+python_libs=(
+    "rospkg"
+    "matplotlib"
+    "control"
+    "pygame"
+    "box2d-py"
+    "pygame-menu"
+)
 rosversion="ros-melodic"
 
 ros_tools=(
@@ -131,6 +152,7 @@ install_dependency "Developer tools and packages" devtools[@]
 install_dependency "GTK development library" gtk[@]
 install_dependency "Video I/O packages" video_iopack[@]
 install_dependency "Python3 dev tools" python_dev[@]
+install_python_pckts "Python3 libs" python_libs[@]
 
 if [[ -x "$(command -v roscore)" ]];then
   echo $(echo_pass 'ros')
@@ -145,10 +167,4 @@ sudo apt-get update
 . ~/.bashrc
 configld
 
-# pip3 install rospkg
-# pip3 install matplotlib
-# pip3 install control
-# pip3 install pygame
-# pip3 install box2d-py
-# pip3 install pygame-menu
 
