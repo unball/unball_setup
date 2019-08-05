@@ -64,6 +64,7 @@ install_ros(){
   sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
   sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
+  sudo apt-get update
   sudo apt-get -y install ros-melodic-desktop-full
   sudo rosdep init
   rosdep update
@@ -71,18 +72,20 @@ install_ros(){
   echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
   
   echo "Finished"
+  sudo apt-get update
 }
 
 configure_catkin(){
+  sudo apt-get update
   echo "$user_"
-  source /opt/ros/melodic/setup.bash
+  . /opt/ros/melodic/setup.bash
   mkdir -p /home/$user_/catkin_ws_unball/src; cd /home/$user_/catkin_ws_unball/src
   catkin_init_workspace
   cd /home/$user_/catkin_ws_unball/; catkin_make;
-  source ~/catkin_ws_unball/devel/setup.bash
+  . ~/catkin_ws_unball/devel/setup.bash
   echo "# Sourcing catkin environment variables" >> /home/$user_/.bashrc
   echo "source ~/catkin_ws_unball/devel/setup.bash" >> /home/$user_/.bashrc
-  source /home/$user_/.bashrc
+  . /home/$user_/.bashrc
 }
 
 
@@ -114,6 +117,7 @@ python_dev=(
 rosversion="ros-melodic"
 
 ros_tools=(
+    sudo apt-get update
     $rosversion"-joy"
     $rosversion"-rosbridge-server"
     $rosversion"-rosserial"
@@ -122,7 +126,7 @@ ros_tools=(
 
 user_=$(whoami)
 
-source /home/$user_/.bashrc
+. /home/$user_/.bashrc
 install_dependency "Developer tools and packages" devtools[@]
 install_dependency "GTK development library" gtk[@]
 install_dependency "Video I/O packages" video_iopack[@]
@@ -136,6 +140,15 @@ else
 fi
 
 # sudo easy_install numpy scipy Sphinx numpydoc nose pykalman
-source ~/.bashrc
 install_dependency "ROS Dependencies" ros_tools[@]
+sudo apt-get update
+. ~/.bashrc
 configld
+
+# pip3 install rospkg
+# pip3 install matplotlib
+# pip3 install control
+# pip3 install pygame
+# pip3 install box2d-py
+# pip3 install pygame-menu
+
