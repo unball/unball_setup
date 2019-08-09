@@ -4,16 +4,16 @@ GREEN='\033[0;32m'
 NO_COLOR='\033[0m'
 
 repos=(
-    ieee-very-small
+    # ieee-very-small
     Firmware
     communication
-    control
-    measurement_system
-    strategy
-    system
+    # control
+    # measurement_system
+    # strategy
+    # system
     main_system
     python_simulator
-    python_vision
+    # python_vision
 )
 
 check_repos(){
