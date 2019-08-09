@@ -55,24 +55,9 @@ configure_catkin(){
             ln -s ~/unball/$i ~/catkin_ws_unball/src/$i
         fi
     done
-    if [[ ! -e "src/simulator" ]]; then
-        ln -s ~/unball/simulator ~/catkin_ws_unball/src/simulator
-    fi
-    cp ${ORIGINAL_DIRECTORY}/run_system.sh ~/catkin_ws_unball/
-    cp ${ORIGINAL_DIRECTORY}/run_strategy_and_simulator.sh ~/catkin_ws_unball/
     cp ${ORIGINAL_DIRECTORY}/run_strategy_and_pythonsimulator.sh ~/catkin_ws_unball/
     cp ${ORIGINAL_DIRECTORY}/update_all_repos.sh ~/catkin_ws_unball/
     cp ${ORIGINAL_DIRECTORY}/status_all_repos.sh ~/catkin_ws_unball/
-    cp ${ORIGINAL_DIRECTORY}/hard_reset_all_repos.sh ~/catkin_ws_unball/
-    cp ${ORIGINAL_DIRECTORY}/plot_from_simulator.sh ~/catkin_ws_unball/
-    cp ${ORIGINAL_DIRECTORY}/plot.py ~/catkin_ws_unball/
-
-    chmod 777 ${ORIGINAL_DIRECTORY}/run_strategy_and_simulator.sh
-    if [[ -e /usr/bin/run_strategy_and_simulator ]]; then
-        sudo rm /usr/bin/run_strategy_and_simulator
-    fi
-
-    sudo ln -s ~/catkin_ws_unball/run_strategy_and_simulator.sh /usr/bin/run_strategy_and_simulator
 
     chmod 777 ${ORIGINAL_DIRECTORY}/run_strategy_and_pythonsimulator.sh
     if [[ -e /usr/bin/run_strategy_and_pythonsimulator ]]; then
