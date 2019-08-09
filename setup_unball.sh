@@ -85,15 +85,4 @@ fi
 
 cd ~/unball
 check_repos repos[@]
-
-if [[ $1 != "-y" ]]; then
-    printf "Do you want to download simulator?[y/N] "
-    read choice
-    if [[($choice == "y") || ($choice == "Y") ]]; then
-        download_simulator
-    fi
-else
-    download_simulator
-fi
-
 configure_catkin repos[@]
