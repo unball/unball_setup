@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROS_FOLDER=/opt/ros/kinetic/
+ROS_FOLDER=/opt/ros/melodic/
 
 configld(){
     sudo echo "$ROS_FOLDER"lib > /etc/ld.so.conf.d/ros.conf
@@ -52,37 +52,52 @@ install_dependency() {
       printf "\e[0m\n"
       printf "\e[1m Installing"
       printf "\e[0m\n"
-      sudo apt-get -y --force-yes install "$i"
+      sudo apt-get -y install "$i"
       echo "Done installing $i!"
     fi
   done
 }
 
+install_python_pckts() {
+  declare -a argAry=("${!2}")
+
+  for i in "${argAry[@]}"
+  do
+      printf "\e[1m Installing"
+      printf "\e[0m\n"
+      pip3 install "$i"
+      echo "Done installing $i!"
+  done
+}
+
 install_ros(){
-  echo "Starting ROS-kinetic installation"
+  sudo apt-get update
+  echo "Starting ROS-melodic installation"
   sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-  sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+  sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
   sudo apt-get update
-  sudo apt-get -y install ros-kinetic-desktop-full
+  sudo apt-get -y install ros-melodic-desktop-full
   sudo rosdep init
   rosdep update
   echo "# Sourcing ROS environment variables" >> /home/$user_/.bashrc
-  echo "source /opt/ros/kinetic/setup.bash" >> /home/$user_/.bashrc
+  echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
   
   echo "Finished"
+  sudo apt-get update
 }
 
 configure_catkin(){
+  sudo apt-get update
   echo "$user_"
-  source /opt/ros/kinetic/setup.bash
+  . /opt/ros/melodic/setup.bash
   mkdir -p /home/$user_/catkin_ws_unball/src; cd /home/$user_/catkin_ws_unball/src
   catkin_init_workspace
-  source ~/catkin_ws_unball/devel/setup.bash
   cd /home/$user_/catkin_ws_unball/; catkin_make;
+  . ~/catkin_ws_unball/devel/setup.bash
   echo "# Sourcing catkin environment variables" >> /home/$user_/.bashrc
   echo "source ~/catkin_ws_unball/devel/setup.bash" >> /home/$user_/.bashrc
-  source /home/$user_/.bashrc
+  . /home/$user_/.bashrc
 }
 
 
@@ -90,7 +105,7 @@ devtools=(
   "build-essential"
   "cmake"
   "pkg-config"
-  "git-core"
+  "git"
 )
 
 gtk=(
@@ -105,18 +120,25 @@ video_iopack=(
 )
 
 python_dev=(
-    "python-pip"
     "python3-pip"
-    "python2.7-dev"
-    "python-numpy"
-    "python-dev"
-    "python-opencv"
-    "python-qt4"
-    "python-qt4-gl"
+    "python3-dev"
+    "python3-numpy"
+    "python3-opencv"
+    "python3-qt*"
 )
-rosversion="ros-kinetic"
+
+python_libs=(
+    "rospkg"
+    "matplotlib"
+    "control"
+    "pygame"
+    "box2d-py"
+    "pygame-menu"
+)
+rosversion="ros-melodic"
 
 ros_tools=(
+    sudo apt-get update
     $rosversion"-joy"
     $rosversion"-rosbridge-server"
     $rosversion"-rosserial"
@@ -125,11 +147,12 @@ ros_tools=(
 
 user_=$(whoami)
 
-source /home/$user_/.bashrc
+. /home/$user_/.bashrc
 install_dependency "Developer tools and packages" devtools[@]
 install_dependency "GTK development library" gtk[@]
 install_dependency "Video I/O packages" video_iopack[@]
-install_dependency "Python 2.7 dev tools" python_dev[@]
+install_dependency "Python3 dev tools" python_dev[@]
+install_python_pckts "Python3 libs" python_libs[@]
 
 if [[ -x "$(command -v roscore)" ]];then
   echo $(echo_pass 'ros')
@@ -138,7 +161,10 @@ else
   configure_catkin
 fi
 
-sudo easy_install numpy scipy Sphinx numpydoc nose pykalman
-
+# sudo easy_install numpy scipy Sphinx numpydoc nose pykalman
 install_dependency "ROS Dependencies" ros_tools[@]
+sudo apt-get update
+. ~/.bashrc
 configld
+
+
