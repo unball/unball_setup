@@ -134,6 +134,8 @@ python_libs=(
     "pygame"
     "box2d-py"
     "pygame-menu"
+    "dubins"
+    "opencv-python"
 )
 rosversion="ros-melodic"
 
