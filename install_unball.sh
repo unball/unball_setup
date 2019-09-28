@@ -48,7 +48,7 @@ install_dependency() {
       printf "\e[32m----------------Package $i already installed----------------"
       printf "\033[0m \n"
     else
-      printf "\e[91m\e[1m[WARNING]\e[21m Package not found"
+      printf "\e[93m\e[1m[WARNING]\e[21m Package not found"
       printf "\e[0m\n"
       printf "\e[1m Installing"
       printf "\e[0m\n"
